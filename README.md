@@ -31,10 +31,12 @@ Hour 7-8. Ghost AI implementation
   chase mode
 - wraparound logic implemented for maze
 
+Hour 9. Ghost Frightened Mode
+- Ghost Frightened mode sprite rendering
+- Ghost Frightened mode navigation logic
+- bit of refactoring
+
 ## TODO
-- implement ghost motion logic
-- test ghost motion logic
-- implement powerups
 - implement eating ghosts, score sprites
 - render score and high score
 - (MINOR) different frequency of render loop and game loop? 
