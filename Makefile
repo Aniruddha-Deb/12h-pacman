@@ -26,6 +26,9 @@ clean:
 	@echo "Cleaning..."
 	rm -r $(BINDIR) $(TARGET)
 
+run:
+	$(TARGET)
+
 # Tests
 #tester:
 #  $(CC) $(CFLAGS) test/tester.cpp $(INC) $(LIB) -o bin/tester

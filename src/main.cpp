@@ -86,10 +86,16 @@ const int DIR_B = 3;
 const int DIR_S = 4;
 const int DEAD  = -1;
 
-const int RG = 0;
-const int PG = 1;
-const int BG = 2;
-const int OG = 3;
+const int MODE_SCATTER = 0;
+const int MODE_CHASE = 1;
+const int MODE_FRIGHT = 2;
+const int MODE_EATEN = 3;
+
+const int RG = 0; // blinky - chase direct target, scatter top right
+const int PG = 1; // pinky - chase four in front (four left and four front if up), scatter top left
+const int BG = 2; // inky - chase negative vector to blinky from two tiles in front of pacman
+   				  // (two to left and two to top if facing front), scatter bottom right
+const int OG = 3; // clyde - chase direct if within 8 blocks, otherwise scatter target, scatter bottom left
 
 
 const SDL_Rect* SPR_DEAD[12] = 
@@ -130,14 +136,30 @@ const SDL_Rect* SPR_GHOSTS[4][4][2] = {
 
 const SDL_Rect G_MAZE = {0,16,224,248};
 
+typedef struct Ghosts {
+	int pos[4][2];
+	int tgt[4][2];
+	int dir[4];
+	int mode[4];
+} Ghosts;
+
 class Game {
 	
 	public:
 	int pacman_state = 4;
 	int pacman_pos_x = 112;
 	int pacman_pos_y = 188;
-	int pacman_frame = 0;
+	int clock = 0; // stores time elapsed in s
+	int gmode = MODE_SCATTER;
+	int frame = 0;
 	int score = 0;
+
+	Ghosts gdata = {
+		.pos={{14*8+4,11*8+4},{14*8+4,14*8+4},{12*8+4,14*8+4},{16*8+4,14*8+4}},
+		.tgt={{0,0},{0,0},{0,0},{0,0}},
+		.dir={DIR_R, DIR_T, DIR_R, DIR_L},
+		.mode={0,0,0,0}
+	};
 
 	// Don't ask how much effort this took.
 	char map[31][29] = {
@@ -154,9 +176,9 @@ class Game {
      "     #.##### ## #####.#     ",
      "     #.##          ##.#     ",
      "     #.## ###--### ##.#     ",
-     "######.## #      # ##.######",
+     "######.## ###  ### ##.######",
      "      .   #      #   .      ",
-     "######.## #      # ##.######",
+     "######.## ######## ##.######",
      "     #.## ######## ##.#     ",
      "     #.##          ##.#     ",
      "     #.## ######## ##.#     ",
@@ -183,7 +205,7 @@ void render_sprite (const SDL_Rect* sprite, SDL_Rect* pos) {
 
 void render_pacman(int x, int y, int dir, int frame) {
 	SDL_Rect pcm = {x-8, y+8, 16, 16};
-	render_sprite(SPR_PACMAN[dir][frame%3], &pcm);
+	render_sprite(SPR_PACMAN[dir][(frame/2)%3], &pcm);
 }
 
 void render_food(const char map[31][29]) {
@@ -199,6 +221,14 @@ void render_food(const char map[31][29]) {
 	}
 }
 
+void render_ghosts(const Ghosts& gdata, int frame) {
+	int ghosts[] = {RG, PG, BG, OG};
+	for (int g : ghosts) {
+		SDL_Rect loc =  {gdata.pos[g][0]-8,gdata.pos[g][1]+8,16,16};
+		render_sprite(SPR_GHOSTS[g][gdata.dir[g]][(frame/2)%2], &loc);
+	}
+}
+
 void render_game (Game& g) {
 	// render the maze first 
 	SDL_RenderCopy(ren, tex, &SPR_MAZE, &G_MAZE);
@@ -207,7 +237,8 @@ void render_game (Game& g) {
 	render_food(g.map);
 
 	// finally the actors
-	render_pacman(g.pacman_pos_x, g.pacman_pos_y, g.pacman_state, g.pacman_frame);
+	render_pacman(g.pacman_pos_x, g.pacman_pos_y, g.pacman_state, g.frame);
+	render_ghosts(g.gdata, g.frame);
 }
 
 void load_primary_texture() {
@@ -229,7 +260,7 @@ void switch_direction (Game& g, int key) {
 	if (key == -1) return;
 	int sqx = g.pacman_pos_x/8;
 	int sqy = g.pacman_pos_y/8;
-	std::cout << "(" << sqx << ", " << sqy << ")" << std::endl;
+	//std::cout << "(" << sqx << ", " << sqy << ")" << std::endl;
 	int new_state = -5;
 	if (key == SDLK_LEFT && g.map[sqy][sqx-1] != '#') new_state = DIR_L;
 	if (key == SDLK_RIGHT && g.map[sqy][sqx+1] != '#') new_state = DIR_R;
@@ -242,10 +273,17 @@ void switch_direction (Game& g, int key) {
 	}
 }
 
-void update_game(Game& g) {
-	
+void update_pacman(Game& g) {
 	int sqx = g.pacman_pos_x/8;
 	int sqy = g.pacman_pos_y/8;
+	if (sqx == 0 && sqy == 14 && g.pacman_state == DIR_L) {
+		g.pacman_pos_x = 27*8+4;
+		return;
+	}
+	else if (sqx == 27 && sqy == 14 && g.pacman_state == DIR_R) {
+		g.pacman_pos_x = 4;
+		return;
+	}
 	int x = g.pacman_pos_x;
 	int y = g.pacman_pos_y;
 	int st = g.pacman_state;
@@ -253,7 +291,7 @@ void update_game(Game& g) {
 
 	if (g.map[sqy][sqx] == '.') {
 		g.score += 10;
-		std::cout << "incr score" << std::endl;
+		//std::cout << "incr score" << std::endl;
 		g.map[sqy][sqx] = ' '; 
 	}
 
@@ -268,6 +306,141 @@ void update_game(Game& g) {
 		case DIR_T: g.pacman_pos_y -= addend; break;
 		case DIR_B: g.pacman_pos_y += addend; break;
 	}
+}
+
+void update_mode(Game& g) {
+	if (g.gmode) {
+		
+	}
+	else {
+
+	}
+}
+		
+int ssq(int x, int y) { return x*x + y*y; }
+
+int opp_dir(int dir) {
+	if (dir == DIR_R) return DIR_L;
+	else if (dir == DIR_L) return DIR_R;
+	else if (dir == DIR_T) return DIR_B;
+	else if (dir == DIR_B) return DIR_T;
+	return 0;
+}
+
+void update_ghosts(Game& g) {
+	
+	Ghosts& dat = g.gdata;
+	//if (g.fmode) {
+	//	dat.mode = {MODE_FRIGHT, MODE_FRIGHT, MODE_FRIGHT, MODE_FRIGHT};
+
+	// update state first
+	if (g.clock % 27 >= 7) g.gmode = MODE_CHASE;
+	else g.gmode = MODE_SCATTER;
+
+	int sqx = g.pacman_pos_x/8;
+	int sqy = g.pacman_pos_y/8;
+
+	if (g.gmode == MODE_SCATTER) {
+		dat.tgt[RG][0] = 28; dat.tgt[RG][1] = 0;
+		dat.tgt[PG][0] = 0; dat.tgt[PG][1] = 0;
+		dat.tgt[BG][0] = 28; dat.tgt[BG][1] = 31;
+		dat.tgt[OG][0] = 0; dat.tgt[OG][1] = 31;
+	}
+	else {
+		dat.tgt[RG][0] = g.pacman_pos_x/8; dat.tgt[RG][1] = g.pacman_pos_y/8;
+		switch (g.pacman_state) {
+			case DIR_R:
+				dat.tgt[PG][0] = sqx + 4; dat.tgt[PG][1] = sqy;
+				dat.tgt[BG][0] = sqx + 2 - (dat.pos[RG][0]/8-sqx-2); dat.tgt[BG][1] = sqy - (dat.pos[RG][1]/8-sqy);
+				break;
+			case DIR_L:
+				dat.tgt[PG][0] = sqx - 4; dat.tgt[PG][1] = sqy;
+				dat.tgt[BG][0] = sqx - 2 - (dat.pos[RG][0]/8-sqx+2); dat.tgt[BG][1] = sqy - (dat.pos[RG][1]/8-sqy);
+				break;
+			case DIR_T:
+				dat.tgt[PG][0] = sqx+4; dat.tgt[PG][1] = sqy-4;
+				dat.tgt[BG][0] = sqx + 2 - (dat.pos[RG][0]/8-sqx-2); dat.tgt[BG][1] = sqy - 2 - (dat.pos[RG][1]/8-sqy+2);
+				break;
+			case DIR_B:
+				dat.tgt[PG][0] = sqx; dat.tgt[PG][1] = sqy-4;
+				dat.tgt[BG][0] = sqx - (dat.pos[RG][0]/8-sqx); dat.tgt[BG][1] = sqy + 2 - (dat.pos[RG][1]/8-sqy-2);
+				break;
+		}
+
+		if (ssq(sqx-dat.pos[OG][0]/8,sqy-dat.pos[OG][1]/8) < 64 ) {
+			dat.tgt[OG][0] = dat.tgt[RG][0]; dat.tgt[OG][1] = dat.tgt[RG][1];
+		}
+		else {
+			dat.tgt[OG][0] = 0; dat.tgt[OG][1] = 31;
+		}
+	}
+
+	// caclulating new directions
+	int ghosts[] = {RG, PG, BG, OG};
+	for (int i : ghosts) {
+		if (dat.pos[i][0]%8 == 4 && dat.pos[i][1]%8 == 4) {
+			int dir = dat.dir[i];
+			int sgx = dat.pos[i][0]/8;
+			int sgy = dat.pos[i][1]/8;
+			int tgx = dat.tgt[i][0];
+			int tgy = dat.tgt[i][1];
+			//std::cout << "dir: " << dir << " sgx " << sgx << " sgy " << sgy << " tgx " << tgx << " tgy " << tgy << std::endl;
+			int dists[4] = {0,0,0,0};
+			dists[DIR_R] = ssq(sgx+1-tgx, sgy-tgy);
+			dists[DIR_L] = ssq(sgx-1-tgx, sgy-tgy);
+			dists[DIR_T] = ssq(sgx-tgx, sgy-tgy-1);
+			dists[DIR_B] = ssq(sgx-tgx, sgy-tgy+1);
+			dists[opp_dir(dir)] = INT_MAX;
+			
+			//std::cout << g.map[sgx-1][sgy-1] << g.map[sgx][sgy-1] << g.map[sgx+1][sgy-1] << std::endl;
+			//std::cout << g.map[sgx-1][sgy] << g.map[sgx][sgy] << g.map[sgx+1][sgy] << std::endl;
+			//std::cout << g.map[sgx-1][sgy+1] << g.map[sgx][sgy+1] << g.map[sgx+1][sgy+1] << std::endl;
+
+			// baka! g.map has [y,x] indexing
+
+			if (g.map[sgy][sgx-1] == '#') dists[DIR_L] = INT_MAX;
+			if (g.map[sgy][sgx+1] == '#') dists[DIR_R] = INT_MAX;
+			if (g.map[sgy-1][sgx] == '#') dists[DIR_T] = INT_MAX;
+			if (g.map[sgy+1][sgx] == '#') dists[DIR_B] = INT_MAX;
+
+			int midx = 0;
+			for (int i=1; i<4; i++) {
+				if (dists[i] < dists[midx]) midx = i;
+			}
+
+			dat.dir[i] = midx;
+			//std::cout << " midx " << midx << " mval " << dists[midx] << std::endl;
+		}
+	}
+
+	// update ghost positions
+
+	int addend = 2;
+	for (int i : ghosts) {
+		if (dat.pos[i][0]/8 == 0 && dat.pos[i][1]/8 == 14 && dat.dir[i] == DIR_L) {
+			dat.pos[i][0] = 27*8+4;
+			continue;
+		}
+		else if (dat.pos[i][0]/8 == 27 && dat.pos[i][1]/8 == 14 && dat.dir[i] == DIR_R) {
+			dat.pos[i][0] = 4;
+			continue;
+		}
+		switch (dat.dir[i]) {
+			case DIR_R: dat.pos[i][0] += addend; break;
+			case DIR_L: dat.pos[i][0] -= addend; break;
+			case DIR_T: dat.pos[i][1] -= addend; break;
+			case DIR_B: dat.pos[i][1] += addend; break;
+		}
+	}
+}
+	
+
+void update_game(Game& g) {
+
+	update_pacman(g);
+	update_mode(g);
+	update_ghosts(g);
+
 }
 
 int main() {
@@ -298,6 +471,7 @@ int main() {
 	SDL_RenderPresent(ren);
 
 	bool quit = false;
+	int fno = 0;
 	while (!quit) {
 		// render game to screen
 		render_game (game);
@@ -315,7 +489,9 @@ int main() {
 			}
 		}
 
-		game.pacman_frame = (game.pacman_frame+1) % 12;
+		fno++;
+		if (fno%2 == 0) game.frame = (game.frame+1) % 12;
+		if (fno%40 == 0) game.clock += 1;
 		switch_direction(game, key);
 
 		update_game(game);

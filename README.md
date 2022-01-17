@@ -25,6 +25,12 @@ Hour 5-6. Game map creation, collision detection, food and scores
 - implemented collision logic for pacman with game map
 - saw some videos on ghost AI logic. Blinky, inky, pinky and clyde.  
 
+Hour 7-8. Ghost AI implementation
+- Ghosts can track pacman
+- laid groundwork for ghost modes; ghosts spend 7 sec in scatter and 20 sec in 
+  chase mode
+- wraparound logic implemented for maze
+
 ## TODO
 - implement ghost motion logic
 - test ghost motion logic
