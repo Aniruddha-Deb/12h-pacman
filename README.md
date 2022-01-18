@@ -1,6 +1,10 @@
 # 12h pacman
 
-Making pacman in 12 hours
+Making pacman in 12 hours. 
+
+## The End Result
+
+![isn't it pretty?](ghimg/pacman_12h_final.gif)
 
 ## Log
 
@@ -36,7 +40,23 @@ Hour 9. Ghost Frightened Mode
 - Ghost Frightened mode navigation logic
 - bit of refactoring
 
+Hour 10. Text Rendering 
+- Rendered text to screen, scores, etc
+- Implemented a few game modes
+
+Hour 11-12. Gameplay mechanics refinement, game modes
+- font rendering a few more characters
+- added a start screen and a ready window
+- added ghost eating logic, retreat back to ghost base
+- split keyboard update and rendering for slower rendering but more responsive
+  keyboard
+- Added endgame logic but didn't have the time to follow it through with a proper
+  ending sequence (even tho I have the sprites)
+
 ## TODO
-- implement eating ghosts, score sprites
-- render score and high score
-- (MINOR) different frequency of render loop and game loop? 
+Initial todo all done, yay!
+
+Next todo's:
+- Sounds
+- Ending sequence, lives implement (prog just hangs on dying now)
+- Prompt stage, to play again

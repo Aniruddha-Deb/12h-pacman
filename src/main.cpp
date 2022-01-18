@@ -72,7 +72,7 @@ const SDL_Rect SPR_PMGB_1  = {584,64,16,16};
 const SDL_Rect SPR_PMGB_2  = {600,64,16,16};
 const SDL_Rect SPR_PMGW_1  = {616,64,16,16};
 const SDL_Rect SPR_PMGW_2  = {632,64,16,16};
-const SDL_Rect SPR_EYES_R  = {582,80,16,16};
+const SDL_Rect SPR_EYES_R  = {584,80,16,16};
 const SDL_Rect SPR_EYES_L  = {600,80,16,16};
 const SDL_Rect SPR_EYES_T  = {616,80,16,16};
 const SDL_Rect SPR_EYES_B  = {632,80,16,16};
@@ -80,6 +80,76 @@ const SDL_Rect SPR_200     = {456,128,16,16};
 const SDL_Rect SPR_400     = {472,128,16,16};
 const SDL_Rect SPR_800     = {488,128,16,16};
 const SDL_Rect SPR_1600    = {504,128,16,16};
+const SDL_Rect SPR_SCR0    = {456,144,8,8};
+const SDL_Rect SPR_SCR1    = {464,144,8,8};
+const SDL_Rect SPR_SCR2    = {472,144,8,8};
+const SDL_Rect SPR_SCR3    = {480,144,8,8};
+const SDL_Rect SPR_SCR4    = {488,144,8,8};
+const SDL_Rect SPR_SCR5    = {496,144,8,8};
+const SDL_Rect SPR_SCR6    = {504,144,8,8};
+const SDL_Rect SPR_SCR7    = {512,144,8,8};
+const SDL_Rect SPR_SCR8    = {520,144,8,8};
+const SDL_Rect SPR_SCR9    = {528,144,8,8};
+const SDL_Rect SPR_HEXA    = {536,144,8,8};
+const SDL_Rect SPR_HEXB    = {544,144,8,8};
+const SDL_Rect SPR_HEXC    = {552,144,8,8};
+const SDL_Rect SPR_TXT0    = {456,160,8,8};
+const SDL_Rect SPR_TXT1    = {464,160,8,8};
+const SDL_Rect SPR_TXT2    = {472,160,8,8};
+const SDL_Rect SPR_TXT3    = {480,160,8,8};
+const SDL_Rect SPR_TXT4    = {488,160,8,8};
+const SDL_Rect SPR_TXT5    = {496,160,8,8};
+const SDL_Rect SPR_TXT6    = {504,160,8,8};
+const SDL_Rect SPR_TXT7    = {512,160,8,8};
+const SDL_Rect SPR_TXT8    = {520,160,8,8};
+const SDL_Rect SPR_TXT9    = {528,160,8,8};
+const SDL_Rect SPR_TXTA    = {456,168,8,8};
+const SDL_Rect SPR_TXTB    = {464,168,8,8};
+const SDL_Rect SPR_TXTC    = {472,168,8,8};
+const SDL_Rect SPR_TXTD    = {480,168,8,8};
+const SDL_Rect SPR_TXTE    = {488,168,8,8};
+const SDL_Rect SPR_TXTF    = {496,168,8,8};
+const SDL_Rect SPR_TXTG    = {504,168,8,8};
+const SDL_Rect SPR_TXTH    = {512,168,8,8};
+const SDL_Rect SPR_TXTI    = {520,168,8,8};
+const SDL_Rect SPR_TXTJ    = {528,168,8,8};
+const SDL_Rect SPR_TXTK    = {536,168,8,8};
+const SDL_Rect SPR_TXTL    = {544,168,8,8};
+const SDL_Rect SPR_TXTM    = {552,168,8,8};
+const SDL_Rect SPR_TXTN    = {456,176,8,8};
+const SDL_Rect SPR_TXTO    = {464,176,8,8};
+const SDL_Rect SPR_TXTP    = {472,176,8,8};
+const SDL_Rect SPR_TXTQ    = {480,176,8,8};
+const SDL_Rect SPR_TXTR    = {488,176,8,8};
+const SDL_Rect SPR_TXTS    = {496,176,8,8};
+const SDL_Rect SPR_TXTT    = {504,176,8,8};
+const SDL_Rect SPR_TXTU    = {512,176,8,8};
+const SDL_Rect SPR_TXTV    = {520,176,8,8};
+const SDL_Rect SPR_TXTW    = {528,176,8,8};
+const SDL_Rect SPR_TXTX    = {536,176,8,8};
+const SDL_Rect SPR_TXTY    = {544,176,8,8};
+const SDL_Rect SPR_TXTZ    = {552,176,8,8};
+const SDL_Rect SPR_COPY    = {544,160,8,8};
+const SDL_Rect SPR_EXCLM   = {552,160,8,8};
+const SDL_Rect SPR_HYPHEN  = {544,152,8,8};
+const SDL_Rect SPR_PTS     = {512,152,18,8};
+
+const SDL_Rect* SPR_TXTALPH[26]    = {
+	 &SPR_TXTA,&SPR_TXTB,&SPR_TXTC,&SPR_TXTD,&SPR_TXTE,&SPR_TXTF,&SPR_TXTG,
+	 &SPR_TXTH,&SPR_TXTI,&SPR_TXTJ,&SPR_TXTK,&SPR_TXTL,&SPR_TXTM,&SPR_TXTN,
+	 &SPR_TXTO,&SPR_TXTP,&SPR_TXTQ,&SPR_TXTR,&SPR_TXTS,&SPR_TXTT,&SPR_TXTU,
+	 &SPR_TXTV,&SPR_TXTW,&SPR_TXTX,&SPR_TXTY,&SPR_TXTZ
+};
+
+const SDL_Rect* SPR_TXTNUM[10]    = {
+	&SPR_TXT0,&SPR_TXT1,&SPR_TXT2,&SPR_TXT3,&SPR_TXT4,&SPR_TXT5,&SPR_TXT6,
+	&SPR_TXT7,&SPR_TXT8,&SPR_TXT9
+};
+
+const SDL_Rect* SPR_SCR[10]    = {
+	&SPR_SCR0,&SPR_SCR1,&SPR_SCR2,&SPR_SCR3,&SPR_SCR4,&SPR_SCR5,&SPR_SCR6,
+	&SPR_SCR7,&SPR_SCR8,&SPR_SCR9
+};
 
 const int DIR_R = 0;
 const int DIR_L = 1;
@@ -88,12 +158,17 @@ const int DIR_B = 3;
 const int DIR_S = 4;
 const int DEAD  = -1;
 
-const int MODE_STMENU = 4;
 const int MODE_SCATTER = 0;
 const int MODE_CHASE = 1;
 const int MODE_FRIGHT = 2;
-const int MODE_EATEN = 3;
-const int MODE_OVER = 4;
+const int MODE_STMENU = 4;
+const int MODE_DEATH = 5;
+const int MODE_READY = 6;
+const int MODE_AGAIN = 7;
+
+const int FMST_FRIGHT = 0;
+const int FMST_BACK = 1;
+const int FMST_ACTIVE = 2;
 
 const int RG = 0; // blinky - chase direct target, scatter top right
 const int PG = 1; // pinky - chase four in front (four left and four front if up), scatter top left
@@ -101,6 +176,11 @@ const int BG = 2; // inky - chase negative vector to blinky from two tiles in fr
    				  // (two to left and two to top if facing front), scatter bottom right
 const int OG = 3; // clyde - chase direct if within 8 blocks, otherwise scatter target, scatter bottom left
 
+const int GHOSTS[] = {RG, PG, BG, OG};
+const SDL_Rect* SPR_EYES[4] = 
+	{ &SPR_EYES_R, &SPR_EYES_L, &SPR_EYES_T, &SPR_EYES_B };
+const SDL_Rect* SPR_GSCORES[4] = 
+	{ &SPR_200, &SPR_400, &SPR_800, &SPR_1600 };
 
 const SDL_Rect* SPR_DEAD[12] = 
 	{ &SPR_PCM_0, &SPR_PCM_D1, &SPR_PCM_D2, &SPR_PCM_D3, &SPR_PCM_D4, 
@@ -142,24 +222,29 @@ const SDL_Rect* SPR_FRIGHT[2][2] = {
 	{&SPR_PMGW_1, &SPR_PMGW_2}
 };
 
-const SDL_Rect G_MAZE = {0,16,224,248};
+const SDL_Rect G_MAZE = {0,24,224,248};
+const SDL_Rect G_SCORE = {0,0,248,24};
+const SDL_Rect G_STATUS = {0,272,224,16};
 
 typedef struct Ghosts {
 	int pos[4][2];
 	int tgt[4][2];
 	int dir[4];
-	int mode[4];
-	int speed;
+	int fmstate[4];
+	int speed[4];
 } Ghosts;
 
 class Game {
 	
 	public:
-	int pacman_state = 4;
+	int pacman_state = DIR_R;
 	int pacman_pos_x = 112;
 	int pacman_pos_y = 188;
 	int clock = 0; // stores time elapsed in s
-	int gmode = MODE_SCATTER;
+	int gmode = MODE_STMENU;
+	int num_eaten = 0;
+	int lives = 3;
+	int hscore = 0;
 	int fright_start_time = -10;
 	int frame = 0;
 	int score = 0;
@@ -168,8 +253,8 @@ class Game {
 		.pos={{14*8+4,11*8+4},{14*8+4,14*8+4},{12*8+4,14*8+4},{16*8+4,14*8+4}},
 		.tgt={{0,0},{0,0},{0,0},{0,0}},
 		.dir={DIR_R, DIR_T, DIR_R, DIR_L},
-		.mode={0,0,0,0},
-		.speed=2
+		.fmstate={0,0,0,0},
+		.speed={2,2,2,2}
 	};
 
 	// Don't ask how much effort this took.
@@ -207,6 +292,11 @@ class Game {
      "############################"
 	};
 
+	void incr_score(int incr) {
+		score += incr;
+		if (score > hscore) hscore = score;
+	}
+
 };
 
 void render_sprite (const SDL_Rect* sprite, SDL_Rect* pos) {
@@ -215,8 +305,50 @@ void render_sprite (const SDL_Rect* sprite, SDL_Rect* pos) {
 }
 
 void render_pacman(int x, int y, int dir, int frame) {
-	SDL_Rect pcm = {x-8, y+8, 16, 16};
+	SDL_Rect pcm = {x-8, y+16, 16, 16};
 	render_sprite(SPR_PACMAN[dir][(frame/2)%3], &pcm);
+}
+
+void render_num(int x, int y, int num) {
+	SDL_Rect r = {x*8, y*8, 8, 8};
+	if (num == 0) {
+		render_sprite(SPR_SCR[0],&r);
+		r.x -= 8;
+		render_sprite(SPR_SCR[0],&r);
+		// render two zeros
+	}
+	while (num > 0) {
+		render_sprite(SPR_SCR[num%10],&r);
+		r.x -= 8;
+		num /= 10;
+	}
+}
+
+void render_character(int x, int y, char t) {
+	SDL_Rect r = {x*8, y*8, 8, 8};
+	if ('0' <= t && t <= '9') {
+		render_sprite(SPR_TXTNUM[t-'0'], &r);
+	}
+	else if (t == '!') render_sprite(&SPR_EXCLM, &r);
+	else if (t == '~') render_sprite(&SPR_COPY, &r);
+	else if (t == '-') render_sprite(&SPR_HYPHEN, &r);
+	else if (t == ';') {
+		r.w = 18;
+		render_sprite(&SPR_PTS, &r);
+		r.w = 8;
+	}
+	else if ('a' <= t && t <= 'z') {
+		render_sprite(SPR_TXTALPH[t-'a'], &r);
+	}
+	else if ('A' <= t && t <= 'Z') {
+		render_sprite(SPR_TXTALPH[t-'A'], &r);
+	}
+}
+
+void render_text(int x, int y, std::string text) {
+	for (int i=0; i<text.length(); i++) {
+		render_character(x+i,y,text[i]);
+	}
 }
 
 void render_food(const char map[31][29], int frame) {
@@ -224,7 +356,7 @@ void render_food(const char map[31][29], int frame) {
 	for (int i=0; i<31; i++) {
 		for (int j=0; j<28; j++) {
 			r.x = j*8;
-			r.y = i*8 + 16;
+			r.y = i*8 + 24;
 			if (map[i][j] == '.') {
 				render_sprite( &SPR_FOOD, &r );
 			}
@@ -238,26 +370,64 @@ void render_food(const char map[31][29], int frame) {
 void render_ghosts(const Ghosts& gdata, int gmode, int fmodedelta, int frame) {
 	int ghosts[] = {RG, PG, BG, OG};
 	for (int g : ghosts) {
-		SDL_Rect loc =  {gdata.pos[g][0]-8,gdata.pos[g][1]+8,16,16};
+		SDL_Rect loc =  {gdata.pos[g][0]-8,gdata.pos[g][1]+16,16,16};
 		if (gmode == MODE_FRIGHT) {
-			if (fmodedelta >= 4) render_sprite(SPR_FRIGHT[(frame/6)%2][(frame/2)%2], &loc);
+			if (gdata.fmstate[g] == FMST_BACK) render_sprite(SPR_EYES[gdata.dir[g]], &loc);
+			else if (fmodedelta >= 3) render_sprite(SPR_FRIGHT[(frame/6)%2][(frame/2)%2], &loc);
 			else render_sprite(SPR_FRIGHT[0][(frame/2)%2], &loc);
 		}
 		else render_sprite(SPR_GHOSTS[g][gdata.dir[g]][(frame/2)%2], &loc);
 	}
 }
 
-void render_game (Game& g) {
-	// render the maze first 
-	SDL_RenderCopy(ren, tex, &SPR_MAZE, &G_MAZE);
-
-	// then render the food
-	render_food(g.map, g.frame);
-
-	// finally the actors
-	render_pacman(g.pacman_pos_x, g.pacman_pos_y, g.pacman_state, g.frame);
-	render_ghosts(g.gdata, g.gmode, g.clock - g.fright_start_time, g.frame);
+void render_scores(int score, int hs, int frame) {
+	SDL_RenderFillRect(ren, &G_SCORE);
+	if ((frame/6)%2) render_text(3,0,"1UP");
+	render_text(9,0,"HIGH SCORE");
+	render_num(6,1,score);
+	render_num(16,1,hs);
 }
+
+void render_lives(int nlives) {
+	SDL_RenderFillRect(ren, &G_STATUS);
+	SDL_Rect r = {16,272,16,16};
+	for (int i=0; i<nlives; i++) {
+		render_sprite(&SPR_PCM_L1, &r);
+		r.x += 16;
+	}
+}
+
+void render_game (Game& g) {
+
+	render_scores(g.score, g.hscore, g.frame);
+	render_lives(g.lives);
+
+	if (g.gmode == MODE_STMENU) {
+		SDL_RenderFillRect(ren, &G_MAZE);
+		render_text(7, 14, "Push any button");
+		render_text(8, 17, "1 Player only");
+		render_text(1, 20, "Bonus pac-man for 10000 ;");
+		render_text(4, 23, "~ 2022 Aniruddha Deb");
+	}
+	else {
+		// render the maze first 
+		SDL_RenderCopy(ren, tex, &SPR_MAZE, &G_MAZE);
+
+		// then render the food 
+		render_food(g.map, g.frame);
+
+		if (g.gmode == MODE_READY) {
+			render_text(9,14,"Player One");
+			render_text(11,20,"Ready!");
+		}
+		else {
+			// finally the actors
+			render_pacman(g.pacman_pos_x, g.pacman_pos_y, g.pacman_state, g.frame);
+			render_ghosts(g.gdata, g.gmode, g.clock - g.fright_start_time, g.frame);
+		}
+	}
+}
+
 
 void load_primary_texture() {
 	int img_flags = IMG_INIT_PNG;
@@ -268,7 +438,7 @@ void load_primary_texture() {
 	}
 
 	if (success) {
-		SDL_Surface* surf = IMG_Load("res/sprites.png");
+		SDL_Surface* surf = IMG_Load("res/sprites_transparent.png");
 		tex = SDL_CreateTextureFromSurface(ren, surf);
 		SDL_FreeSurface(surf);
 	}
@@ -276,6 +446,14 @@ void load_primary_texture() {
 
 void switch_direction (Game& g, int key) {
 	if (key == -1) return;
+	if (key != -1 && g.gmode == MODE_STMENU) {
+		std::cout << "In ready mode " << std::endl;
+		g.gmode = MODE_READY;
+		return;
+	}
+	if (g.gmode == MODE_STMENU || g.gmode == MODE_DEATH || g.gmode == MODE_READY ||
+		g.gmode == MODE_AGAIN) return;
+		
 	int sqx = g.pacman_pos_x/8;
 	int sqy = g.pacman_pos_y/8;
 	//std::cout << "(" << sqx << ", " << sqy << ")" << std::endl;
@@ -291,7 +469,38 @@ void switch_direction (Game& g, int key) {
 	}
 }
 
+void check_pacman_collision(Game& g) {
+	int sqx = g.pacman_pos_x/8;
+	int sqy = g.pacman_pos_y/8;
+	
+	for (int i : GHOSTS) {
+		int gx = g.gdata.pos[i][0]/8;
+		int gy = g.gdata.pos[i][1]/8;
+
+		if (sqx == gx && sqy == gy) {
+			if (g.gmode == MODE_FRIGHT && g.gdata.fmstate[i] == FMST_FRIGHT){
+				// eat ghost
+				std::cout << "Eating ghost" << std::endl;
+				g.gdata.fmstate[i] = FMST_BACK;
+				g.gdata.speed[i] = 4;
+				g.score += ((1<<(++g.num_eaten))*100);
+			}
+			else if ((g.gmode == MODE_CHASE || g.gmode == MODE_SCATTER) || (g.gmode == MODE_FRIGHT && g.gdata.fmstate[i] == FMST_ACTIVE)) {
+				// ded
+				g.lives -= 1;
+				g.gmode = MODE_DEATH;
+			}
+		}		
+	}
+}
+
+
 void update_pacman(Game& g) {
+
+	check_pacman_collision(g);
+	if (g.gmode == MODE_DEATH) {
+		return;
+	}
 	int sqx = g.pacman_pos_x/8;
 	int sqy = g.pacman_pos_y/8;
 	if (sqx == 0 && sqy == 14 && g.pacman_state == DIR_L) {
@@ -308,16 +517,19 @@ void update_pacman(Game& g) {
 	int addend = 2;
 
 	if (g.map[sqy][sqx] == '.') {
-		g.score += 10;
+		g.incr_score(10);
 		//std::cout << "incr score" << std::endl;
 		g.map[sqy][sqx] = ' '; 
 	}
 	else if (g.map[sqy][sqx] == 'G') {
 		// change game mode
 		g.gmode = MODE_FRIGHT;
-		g.gdata.speed = 1;
 		g.map[sqy][sqx] = ' ';
 		g.fright_start_time = g.clock;
+		for (int i : GHOSTS) {
+			g.gdata.speed[i] = 1;
+		}
+		g.incr_score(50);
 	}
 
 	if (x%8 <= 4 && st == DIR_L && g.map[sqy][sqx-1] == '#') addend = 0;
@@ -334,21 +546,27 @@ void update_pacman(Game& g) {
 }
 
 void update_mode(Game& g) {
-	if (g.gmode == MODE_FRIGHT && g.fright_start_time + 5 < g.clock) {
+	if (g.gmode == MODE_READY && g.clock > 2) {
+		g.gmode = MODE_SCATTER;
+	}
+	else if (g.gmode == MODE_FRIGHT && g.fright_start_time + 4 < g.clock) {
 		std::cout << "Updating state" << std::endl;
-		if (g.clock % 27 >= 7) g.gmode = MODE_CHASE;
+		if ((g.clock-2)% 27 >= 7) g.gmode = MODE_CHASE;
 		else g.gmode = MODE_SCATTER;
-		g.gdata.speed = 2;
 
+		g.num_eaten = 0;
 		// center ghosts
 		int ghosts[] = {RG, PG, BG, OG};
 		for (int i : ghosts) {
 			g.gdata.pos[i][0] = (g.gdata.pos[i][0]/4)*4;
 			g.gdata.pos[i][1] = (g.gdata.pos[i][1]/4)*4;
+			g.gdata.fmstate[i] = FMST_FRIGHT;
+			g.gdata.speed[i] = 2;
 		}
 	}
-	else {
-		// let fright continue	
+	else if (g.gmode == MODE_SCATTER || g.gmode == MODE_CHASE) {
+		if ((g.clock-2) % 27 >= 7) g.gmode = MODE_CHASE;
+		else g.gmode = MODE_SCATTER;
 	}
 }
 		
@@ -416,10 +634,10 @@ void update_ghost_positions(Ghosts& dat, char map[31][29]) {
 			continue;
 		}
 		switch (dat.dir[i]) {
-			case DIR_R: dat.pos[i][0] += dat.speed; break;
-			case DIR_L: dat.pos[i][0] -= dat.speed; break;
-			case DIR_T: dat.pos[i][1] -= dat.speed; break;
-			case DIR_B: dat.pos[i][1] += dat.speed; break;
+			case DIR_R: dat.pos[i][0] += dat.speed[i]; break;
+			case DIR_L: dat.pos[i][0] -= dat.speed[i]; break;
+			case DIR_T: dat.pos[i][1] -= dat.speed[i]; break;
+			case DIR_B: dat.pos[i][1] += dat.speed[i]; break;
 		}
 	}
 }
@@ -465,28 +683,37 @@ void update_ghosts(Game& g) {
 		}
 
 	}
-	else if (g.gmode == MODE_SCATTER) {
+	else if (g.gmode == MODE_FRIGHT) {
 		int ghosts[] = {RG, PG, BG, OG};
 		for (int i : ghosts) {
-			int gx = dat.pos[i][0]/8;
-			int gy = dat.pos[i][1]/8;
-			int dirs[4] = {-1,-1,-1,-1};
-			int ndirs = 0;
-			if (g.map[gy][gx-1] != '#') dirs[ndirs++] = DIR_L;
-			if (g.map[gy][gx+1] != '#') dirs[ndirs++] = DIR_R;
-			if (g.map[gy-1][gx] != '#') dirs[ndirs++] = DIR_T;
-			if (g.map[gy+1][gx] != '#') dirs[ndirs++] = DIR_B;
-			int ridx = (int)(((float)rand()/RAND_MAX) * ndirs);
+			// TODO return to home logic here if eaten / active logic if not eaten
+			if (dat.fmstate[i] == FMST_BACK) {
+				dat.tgt[i][0] = 14;
+				dat.tgt[i][1] = 13;
+				dat.pos[i][0] = (dat.pos[i][0]/4)*4;
+				dat.pos[i][1] = (dat.pos[i][1]/4)*4;
+			}
+			else {
+				int gx = dat.pos[i][0]/8;
+				int gy = dat.pos[i][1]/8;
+				int dirs[4] = {-1,-1,-1,-1};
+				int ndirs = 0;
+				if (g.map[gy][gx-1] != '#') dirs[ndirs++] = DIR_L;
+				if (g.map[gy][gx+1] != '#') dirs[ndirs++] = DIR_R;
+				if (g.map[gy-1][gx] != '#') dirs[ndirs++] = DIR_T;
+				if (g.map[gy+1][gx] != '#') dirs[ndirs++] = DIR_B;
+				int ridx = (int)(((float)rand()/RAND_MAX) * ndirs);
 
-			switch(dirs[ridx]) {
-				case DIR_R:
-					dat.tgt[i][0] = ((gx+1)*8+4); dat.tgt[i][1] = (gy*8+4); break;
-				case DIR_L:
-					dat.tgt[i][0] = ((gx-1)*8+4); dat.tgt[i][1] = (gy*8+4); break;
-				case DIR_T:
-					dat.tgt[i][0] = ((gx)*8+4); dat.tgt[i][1] = ((gy-1)*8+4); break;
-				case DIR_B:
-					dat.tgt[i][0] = ((gx)*8+4); dat.tgt[i][1] = ((gy+1)*8+4); break;
+				switch(dirs[ridx]) {
+					case DIR_R:
+						dat.tgt[i][0] = ((gx+1)*8+4); dat.tgt[i][1] = (gy*8+4); break;
+					case DIR_L:
+						dat.tgt[i][0] = ((gx-1)*8+4); dat.tgt[i][1] = (gy*8+4); break;
+					case DIR_T:
+						dat.tgt[i][0] = ((gx)*8+4); dat.tgt[i][1] = ((gy-1)*8+4); break;
+					case DIR_B:
+						dat.tgt[i][0] = ((gx)*8+4); dat.tgt[i][1] = ((gy+1)*8+4); break;
+				}
 			}
 		}
 	}
@@ -497,15 +724,19 @@ void update_ghosts(Game& g) {
 
 void update_game(Game& g) {
 
-	update_pacman(g);
 	update_mode(g);
-	update_ghosts(g);
-
+	if (g.gmode == MODE_SCATTER || g.gmode == MODE_FRIGHT || g.gmode == MODE_CHASE) {
+		update_pacman(g);
+		update_ghosts(g);
+	}
 }
+
+// Minor todo's:
+// add one more row at the heading
 
 int main() {
 	srand(time(nullptr));
-	SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 448, 560, SDL_WINDOW_SHOWN);
+	SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 448, 576, SDL_WINDOW_SHOWN);
 	if (win == nullptr){
 		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
@@ -528,17 +759,19 @@ int main() {
 	load_primary_texture();
 
 	SDL_Event e;
+	SDL_SetRenderDrawColor(ren, 0,0,0,SDL_ALPHA_OPAQUE);
 	SDL_RenderCopy(ren, tex, &SPR_MAZE, &G_MAZE);
 	SDL_RenderPresent(ren);
 
 	bool quit = false;
 	int fno = 0;
+	int key = -1;
 	while (!quit) {
 		// render game to screen
+		if (fno%2 == 0)
 		render_game (game);
 
 		// get events 
-		int key = -1;
 		if (state[SDL_SCANCODE_RIGHT]) key = SDLK_RIGHT;
 		else if (state[SDL_SCANCODE_LEFT]) key = SDLK_LEFT;
 		else if (state[SDL_SCANCODE_UP]) key = SDLK_UP;
@@ -551,15 +784,19 @@ int main() {
 		}
 
 		fno++;
-		if (fno%2 == 0) game.frame = (game.frame+1) % 12;
-		if (fno%40 == 0) game.clock += 1;
-		switch_direction(game, key);
+		if (fno%4 == 0) {
+			game.frame = (game.frame+1) % 12;
+			if (fno%100 == 0 && game.gmode != MODE_STMENU) game.clock += 1;
+			switch_direction(game, key);
 
-		update_game(game);
-		
-		SDL_RenderPresent(ren);
+			if (game.gmode == MODE_READY || game.gmode == MODE_CHASE || game.gmode == MODE_SCATTER || game.gmode == MODE_FRIGHT)
+			update_game(game);
+			
+			SDL_RenderPresent(ren);
+			key = -1;
+		}
 
-		SDL_Delay(25);	
+		SDL_Delay(10);	
 	}
 
 	SDL_DestroyRenderer(ren);
